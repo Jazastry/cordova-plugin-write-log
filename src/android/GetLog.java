@@ -27,7 +27,7 @@ public class GetLog extends CordovaPlugin {
             File file = new File(Environment.getExternalStorageDirectory(),
                 String.valueOf(System.currentTimeMillis()));
             Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());
-            callbackContext.success('Log file created successfully');
+            callbackContext.success("Log file created successfully");
         } catch (IOException e){
             callbackContext.error("Error in creating log file.");
         }
