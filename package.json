@@ -1,6 +1,6 @@
 {
   "name": "GetLog",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Semple plugin to write logs to Android device.",
   "cordova": {
     "id": "cordova-plugin-get-log-to-file",
