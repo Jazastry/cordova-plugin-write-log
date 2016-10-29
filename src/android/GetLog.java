@@ -29,8 +29,6 @@ public class GetLog extends CordovaPlugin {
                             this.getLog(callbackContext);
                         }
                     });
-
-            this.getLog(callbackContext);
             return true;
         }
         return false;

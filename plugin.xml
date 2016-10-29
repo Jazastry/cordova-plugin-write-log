@@ -12,6 +12,7 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
         	<uses-permission android:name="android.permission.READ_LOGS"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
         <source-file src="src/android/GetLog.java" target-dir="src/cordova-plugin-get-log-to-file/GetLogToFile" />
     </platform>
