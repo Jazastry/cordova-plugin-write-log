@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-write-log",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Write log plugin.",
   "cordova": {
     "id": "com.moust.cordova.writelog",
@@ -14,7 +14,9 @@
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-android"
+    "cordova-android",
+    "logcat",
+    "file"
   ],
   "author": "Jazastry",
   "license": "ISC",
