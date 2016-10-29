@@ -24,6 +24,7 @@ public class WriteLog extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args,final CallbackContext callbackContext) throws JSONException {
         if (action.equals("writeLog")) {
+            final WriteLog plugin = this;
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     boolean err = false;
@@ -40,7 +41,7 @@ public class WriteLog extends CordovaPlugin {
                         callbackContext.error("Error in creating log file.");
                     } else {
                         callbackContext.success("Log file created successfully");
-                        this.sendEmail();
+                        plugin.sendEmail();                        
                     }
                 }
             });
