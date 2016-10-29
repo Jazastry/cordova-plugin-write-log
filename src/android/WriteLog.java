@@ -20,8 +20,11 @@ public class WriteLog extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("writeLog")) {
-            String message = args.getString(0);
-            this.writeLog(callbackContext);
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    this.writeLog(callbackContext);
+                }
+            });
             return true;
         }
         return false;
