@@ -43,13 +43,9 @@ public class WriteLog extends CordovaPlugin {
                 public void run() {
                     boolean err = false;
 
-                    String VERSION = android.os.Build.VERSION.SDK;      // API Level
-                    String DEVICE = android.os.Build.DEVICE;          // Device
-                    String MODEL = android.os.Build.MODEL;           // Model 
-                    String PRODUCT = android.os.Build.PRODUCT;
-                    String DEVICE_INFO_HEADER = " ::: " + VERSION + " ::: " +
-                        DEVICE + " ::: " + MODEL + " ::: " + PRODUCT + " ::: " + 
-                        System.getProperty("line.separator");
+                    String VERSION = "API - " + android.os.Build.VERSION.SDK;
+                    String MODEL = "Model - " + android.os.Build.MODEL;
+                    String DEVICE_INFO_HEADER = " ::: " + VERSION + " ::: " + MODEL + " ::: " + System.getProperty("line.separator");
 
                     try {
                         File file = new File(Environment.getExternalStorageDirectory(),
