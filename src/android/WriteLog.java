@@ -12,6 +12,11 @@ import android.os.Environment;
 import java.io.IOException;
 import java.lang.Runtime;
 
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+import android.net.Uri;
+
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -25,7 +30,7 @@ public class WriteLog extends CordovaPlugin {
 
                     try {
                         File file = new File(Environment.getExternalStorageDirectory(),
-                            String.valueOf(System.currentTimeMillis()));
+                            String.valueOf(System.currentTimeMillis()) + ".log");
                         Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());                        
                     } catch (IOException e){
                         err = true;
@@ -53,4 +58,27 @@ public class WriteLog extends CordovaPlugin {
             callbackContext.error("Error in creating log file.");
         }
     }
+
+    protected void sendEmail() {
+          Log.i("Send email", "");
+          String[] TO = {"jazastry@gmail.com"};
+          String[] CC = {""};
+          Intent emailIntent = new Intent(Intent.ACTION_SEND);
+          
+          emailIntent.setData(Uri.parse("mailto:"));
+          emailIntent.setType("text/plain");
+          emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+          emailIntent.putExtra(Intent.EXTRA_CC, CC);
+          emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DW streaming app debug log");
+          emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+          
+          try {
+             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+             finish();
+             Log.i("Finished sending email...", "");
+          }
+          catch (android.content.ActivityNotFoundException ex) {
+             Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+          }
+       }
 }
