@@ -76,7 +76,7 @@ public class WriteLog extends CordovaPlugin {
             String email = args.getString(0);
             String subject = args.getString(1);
             String text = args.getString(2);
-            plugin.sendEmail(mail, subject, text);
+            plugin.sendEmail(email, subject, text);
             return true;
         }
         return false;
