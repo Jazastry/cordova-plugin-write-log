@@ -73,22 +73,25 @@ public class WriteLog extends CordovaPlugin {
             });
             return true;
         } else if (action.equals("sendMail")) {
-            plugin.sendEmail();
+            String email = args.getString(0);
+            String subject = args.getString(1);
+            String text = args.getString(2);
+            plugin.sendEmail(mail, subject, text);
             return true;
         }
         return false;
     }
 
-    protected void sendEmail() {
+    protected void sendEmail(String mail, String subject, String text) {
           Log.i("Send email", "");
-          String[] TO = {"jazastry@gmail.com"};
+          String[] TO = {mail};
           final Intent emailIntent = new Intent(Intent.ACTION_SEND);
           
           emailIntent.setData(Uri.parse("mailto:"));
           emailIntent.setType("text/plain");
           emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-          emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DW streaming app debug log");
-          emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+          emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+          emailIntent.putExtra(Intent.EXTRA_TEXT, text);
           
           // try {
           //    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
