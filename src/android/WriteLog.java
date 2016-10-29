@@ -17,21 +17,52 @@ import android.util.Log;
 import android.widget.Toast;
 import android.net.Uri;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.text.Html;
+import android.util.Base64;
+
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+
 /**
  * This class echoes a string called from JavaScript.
  */
 public class WriteLog extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args,final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("writeLog")) {
-            final WriteLog plugin = this;
+        final WriteLog plugin = this;
+        if (action.equals("writeLog")) {            
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     boolean err = false;
 
+                    String VERSION = android.os.Build.VERSION.SDK;      // API Level
+                    String DEVICE = android.os.Build.DEVICE;          // Device
+                    String MODEL = android.os.Build.MODEL;           // Model 
+                    String PRODUCT = android.os.Build.PRODUCT;
+                    String DEVICE_INFO_HEADER = " ::: " + VERSION + " ::: " +
+                        DEVICE + " ::: " + MODEL + " ::: " + PRODUCT + " ::: " + 
+                        System.getProperty("line.separator");
+
                     try {
                         File file = new File(Environment.getExternalStorageDirectory(),
-                            String.valueOf(System.currentTimeMillis()) + ".log");
+                            "DW_STREAM." + String.valueOf(System.currentTimeMillis()) + ".log");
+
+                        /*  write device info header */
+                        FileOutputStream stream = new FileOutputStream(file);
+                        try {
+                            stream.write("".getBytes());
+                        } finally {
+                            stream.close();
+                        }                        
+
                         Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());                        
                     } catch (IOException e){
                         err = true;
@@ -40,25 +71,16 @@ public class WriteLog extends CordovaPlugin {
                     if (err) {
                         callbackContext.error("Error in creating log file.");
                     } else {
-                        callbackContext.success("Log file created successfully");
-                        plugin.sendEmail();                        
+                        callbackContext.success("Log file created successfully");                                            
                     }
                 }
             });
             return true;
+        } else if (action.equals("sendMail")) {
+            plugin.sendEmail();
+            return true;
         }
         return false;
-    }
-
-    private void writeLog(CallbackContext callbackContext) {
-        try {
-            File file = new File(Environment.getExternalStorageDirectory(),
-                String.valueOf(System.currentTimeMillis()));
-            Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());
-            callbackContext.success("Log file created successfully");
-        } catch (IOException e){
-            callbackContext.error("Error in creating log file.");
-        }
     }
 
     protected void sendEmail() {
@@ -88,5 +110,6 @@ public class WriteLog extends CordovaPlugin {
                   cordova.startActivityForResult(plugin, Intent.createChooser(emailIntent, "Send mail..."), 0);
               }
           });
-       }
+   }
 }
+
