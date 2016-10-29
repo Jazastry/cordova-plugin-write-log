@@ -1,4 +1,4 @@
-package cordova-plugin-get-log-to-file;
+package com.jazastry.cordova.getlogfile;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -6,6 +6,11 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import android.os.Environment;
+import java.io.IOException;
+import java.lang.Runtime;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -16,13 +21,13 @@ public class GetLog extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getLog")) {
             String message = args.getString(0);
-            this.getLog(message, callbackContext);
+            this.getLog(callbackContext);
             return true;
         }
         return false;
     }
 
-    private void getLog(String message, CallbackContext callbackContext) {
+    private void getLog(CallbackContext callbackContext) {
         try {
             File file = new File(Environment.getExternalStorageDirectory(),
                 String.valueOf(System.currentTimeMillis()));
