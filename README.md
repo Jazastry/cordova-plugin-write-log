@@ -29,7 +29,7 @@ The plugin is adding API level and device model as first row to the log file.
 ## Example
 
 ```javascript
-cordova.plugins.WriteLog.write('', function(mes) {
+cordova.plugins.WriteLog.write(function(mes) {
     alert(JSON.stringify(mes));            
 }, function(err) {
     alert(JSON.stringify(err));
