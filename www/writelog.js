@@ -1,7 +1,7 @@
 var exec = require('cordova/exec');
 
 module.exports = {
-    getLog: function(arg0, success, error) {
-        exec(success, error, "GetLog", "getLog", [arg0]);
+    write: function(arg0, success, error) {
+        exec(success, error, "WriteLog", "writeLog", [arg0]);
     }
 };

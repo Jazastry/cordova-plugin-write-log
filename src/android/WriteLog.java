@@ -1,4 +1,4 @@
-package com.jazastry.cordova.WriteLog;
+package com.moust.cordova.writelog;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -19,15 +19,15 @@ public class WriteLog extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("getLog")) {
+        if (action.equals("writeLog")) {
             String message = args.getString(0);
-            this.getLog(callbackContext);
+            this.writeLog(callbackContext);
             return true;
         }
         return false;
     }
 
-    private void getLog(CallbackContext callbackContext) {
+    private void writeLog(CallbackContext callbackContext) {
         try {
             File file = new File(Environment.getExternalStorageDirectory(),
                 String.valueOf(System.currentTimeMillis()));

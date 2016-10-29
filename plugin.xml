@@ -7,13 +7,13 @@
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="WriteLog">
-                <param name="android-package" value="com.jazastry.cordova.WriteLog" />
+                <param name="android-package" value="com.moust.cordova.writelog.WriteLog" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
         	<uses-permission android:name="android.permission.READ_LOGS"/>
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
-        <resource-file src="src/android/WriteLog.java" target-dir="src/com/jazastry/cordova/WriteLog" />
+        <resource-file src="src/android/WriteLog.java" target-dir="src/com/moust/cordova/writelog/WriteLog" />
     </platform>
 </plugin>
