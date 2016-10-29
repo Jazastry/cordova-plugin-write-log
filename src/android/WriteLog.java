@@ -79,7 +79,7 @@ public class WriteLog extends CordovaPlugin {
           //    Toast.makeText(WriteLog.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
           // }
 
-          final EmailComposer plugin = this;
+          final WriteLog plugin = this;
 
           cordova.getThreadPool().execute(new Runnable() {
               public void run() {
