@@ -30,9 +30,9 @@ The plugin is adding API level and device model as first row to the log file.
 
 ```javascript
 cordova.plugins.WriteLog.write('', function(mes) {
-    $notifications.alert(JSON.stringify(mes));            
+    alert(JSON.stringify(mes));            
 }, function(err) {
-    $notifications.alert(JSON.stringify(err));
+    alert(JSON.stringify(err));
 });
 ```
 
