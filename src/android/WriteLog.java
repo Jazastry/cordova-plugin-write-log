@@ -16,13 +16,9 @@ import java.lang.Runtime;
  * This class echoes a string called from JavaScript.
  */
 public class WriteLog extends CordovaPlugin {
-
-    private CallbackContext callbackContext = null;
-
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args,final CallbackContext callbackContext) throws JSONException {
         if (action.equals("writeLog")) {
-            this.callbackContext = callbackContext;
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     boolean err = false;
