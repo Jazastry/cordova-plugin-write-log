@@ -27,7 +27,8 @@ public class WriteLog extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args,final CallbackContext callbackContext) throws JSONException {
         final WriteLog plugin = this;
-        if (action.equals("writeLog")) {            
+        if (action.equals("writeLog")) {
+            String appName = args.getString(0);            
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     boolean err = false;
@@ -38,7 +39,7 @@ public class WriteLog extends CordovaPlugin {
 
                     try {
                         File file = new File(Environment.getExternalStorageDirectory(),
-                            "DW_STREAM." + String.valueOf(System.currentTimeMillis()) + ".log");
+                            appName + "." + String.valueOf(System.currentTimeMillis()) + ".log");
 
                         /*  write device info header */
                         FileOutputStream stream = new FileOutputStream(file);

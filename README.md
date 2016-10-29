@@ -5,6 +5,7 @@ Write Log plugin for Cordova
 ========================================
 
 A Codova plugin that simply allows you to write log to the Android device memory.
+The generated log file consists of `logcat` command output during the application running cycle. 
 
 
 # Installation
@@ -21,15 +22,16 @@ cordova plugin add cordova-plugin-write-log
 Just call the  `write` method.
 
 ```
-cordova.plugins.WriteLog.write([completeCallback], [errorCallback]);
+cordova.plugins.WriteLog.write([fileNameString],[completeCallback], [errorCallback]);
 ```
 
 The plugin is adding API level and device model as first row to the log file.
+The log
 
 ## Example
 
 ```javascript
-cordova.plugins.WriteLog.write(function(mes) {
+cordova.plugins.WriteLog.write('my_app_name' , function(mes) {
     alert(JSON.stringify(mes));            
 }, function(err) {
     alert(JSON.stringify(err));
