@@ -1,4 +1,4 @@
-package com.jazastry.cordova.getlogfile;
+package com.jazastry.cordova.WriteLog;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -15,7 +15,7 @@ import java.lang.Runtime;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class GetLog extends CordovaPlugin {
+public class WriteLog extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {

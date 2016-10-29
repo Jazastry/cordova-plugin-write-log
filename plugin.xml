@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-get-log-to-file" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>GetLog</name>
-    <js-module name="GetLog" src="www/GetLog.js">
-        <clobbers target="cordova.plugins.GetLog" />
+<plugin id="cordova-plugin-write-log" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Write Log</name>
+    <js-module name="WriteLog" src="www/writelog.js">
+        <clobbers target="WriteLog" />
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="GetLog">
-                <param name="android-package" value="cordova-plugin-get-log-to-file.GetLogToFile" />
+            <feature name="WriteLog">
+                <param name="android-package" value="com.jazastry.cordova.WriteLog" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
         	<uses-permission android:name="android.permission.READ_LOGS"/>
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
-        <source-file src="src/android/GetLog.java" target-dir="src/cordova-plugin-get-log-to-file/GetLogToFile" />
+        <resource-file src="src/android/WriteLog.java" target-dir="src/com/jazastry/cordova/WriteLog" />
     </platform>
 </plugin>
