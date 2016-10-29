@@ -1,6 +1,5 @@
 package com.jazastry.cordova.getlogfile;
 
-import org.apache.cordova;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
