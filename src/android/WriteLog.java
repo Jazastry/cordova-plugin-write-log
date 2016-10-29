@@ -20,15 +20,23 @@ public class WriteLog extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("writeLog")) {
+            this.callbackContext = callbackContext;
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
+                    boolean err = false;
+                    
                     try {
                         File file = new File(Environment.getExternalStorageDirectory(),
                             String.valueOf(System.currentTimeMillis()));
-                        Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());
-                        callbackContext.success("Log file created successfully");
+                        Runtime.getRuntime().exec("logcat -d -v time -f " + file.getAbsolutePath());                        
                     } catch (IOException e){
+                        err = true;
+                    }
+
+                    if (err) {
                         callbackContext.error("Error in creating log file.");
+                    } else {
+                        callbackContext.success("Log file created successfully");
                     }
                 }
             });
