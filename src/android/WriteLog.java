@@ -58,7 +58,7 @@ public class WriteLog extends CordovaPlugin {
                         /*  write device info header */
                         FileOutputStream stream = new FileOutputStream(file);
                         try {
-                            stream.write("".getBytes());
+                            stream.write(DEVICE_INFO_HEADER.getBytes());
                         } finally {
                             stream.close();
                         }                        
