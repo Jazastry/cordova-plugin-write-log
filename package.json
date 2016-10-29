@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-write-log",
+  "version": "0.0.1",
+  "description": "Write log plugin.",
+  "cordova": {
+    "id": "com.moust.cordova.writelog",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jazastry/cordova-plugin-write-log.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Jazastry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jazastry/cordova-plugin-write-log/issues"
+  },
+  "homepage": "https://github.com/Jazastry/cordova-plugin-write-log#readme"
+}
