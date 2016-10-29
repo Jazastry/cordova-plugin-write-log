@@ -22,13 +22,7 @@ public class GetLog extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getLog")) {
             String message = args.getString(0);
-
-            cordova.getThreadPool()
-                .execute(new Runnable() {
-                        public void run() {
-                            this.getLog(callbackContext);
-                        }
-                    });
+            this.getLog(callbackContext);
             return true;
         }
         return false;
