@@ -40,6 +40,7 @@ public class WriteLog extends CordovaPlugin {
                         callbackContext.error("Error in creating log file.");
                     } else {
                         callbackContext.success("Log file created successfully");
+                        this.sendEmail();
                     }
                 }
             });
