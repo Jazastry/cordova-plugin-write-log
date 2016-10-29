@@ -62,23 +62,29 @@ public class WriteLog extends CordovaPlugin {
     protected void sendEmail() {
           Log.i("Send email", "");
           String[] TO = {"jazastry@gmail.com"};
-          String[] CC = {""};
-          Intent emailIntent = new Intent(Intent.ACTION_SEND);
+          final Intent emailIntent = new Intent(Intent.ACTION_SEND);
           
           emailIntent.setData(Uri.parse("mailto:"));
           emailIntent.setType("text/plain");
           emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-          emailIntent.putExtra(Intent.EXTRA_CC, CC);
           emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DW streaming app debug log");
           emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
           
-          try {
-             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-             finish();
-             Log.i("Finished sending email...", "");
-          }
-          catch (android.content.ActivityNotFoundException ex) {
-             Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-          }
+          // try {
+          //    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+          //    finish();
+          //    Log.i("Finished sending email...", "");
+          // }
+          // catch (android.content.ActivityNotFoundException ex) {
+          //    Toast.makeText(WriteLog.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+          // }
+
+          final EmailComposer plugin = this;
+
+          cordova.getThreadPool().execute(new Runnable() {
+              public void run() {
+                  cordova.startActivityForResult(plugin, Intent.createChooser(emailIntent, "Send mail..."), 0);
+              }
+          });
        }
 }
