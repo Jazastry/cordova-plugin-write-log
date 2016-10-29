@@ -17,19 +17,8 @@ import android.util.Log;
 import android.widget.Toast;
 import android.net.Uri;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.text.Html;
-import android.util.Base64;
-
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -93,15 +82,6 @@ public class WriteLog extends CordovaPlugin {
           emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
           emailIntent.putExtra(Intent.EXTRA_TEXT, text);
           
-          // try {
-          //    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-          //    finish();
-          //    Log.i("Finished sending email...", "");
-          // }
-          // catch (android.content.ActivityNotFoundException ex) {
-          //    Toast.makeText(WriteLog.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-          // }
-
           final WriteLog plugin = this;
 
           cordova.getThreadPool().execute(new Runnable() {
