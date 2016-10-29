@@ -21,7 +21,7 @@ cordova plugin add cordova-plugin-write-log
 Just call the  `write` method.
 
 ```
-cordova.plugins.WriteLog.write([string argument], [completeCallback], [errorCallback]);
+cordova.plugins.WriteLog.write([completeCallback], [errorCallback]);
 ```
 
 The plugin is adding API level and device model as first row to the log file.
