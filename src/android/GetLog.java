@@ -1,5 +1,6 @@
 package com.jazastry.cordova.getlogfile;
 
+import org.apache.cordova;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -21,6 +22,14 @@ public class GetLog extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getLog")) {
             String message = args.getString(0);
+
+            cordova.getThreadPool()
+                .execute(new Runnable() {
+                        public void run() {
+                            this.getLog(callbackContext);
+                        }
+                    });
+
             this.getLog(callbackContext);
             return true;
         }
