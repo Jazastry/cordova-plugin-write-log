@@ -1,9 +1,9 @@
 {
   "name": "cordova-plugin-write-log",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Write log plugin.",
   "cordova": {
-    "id": "com.moust.cordova.writelog",
+    "id": "cordova-plugin-write-log",
     "platforms": [
       "android"
     ]

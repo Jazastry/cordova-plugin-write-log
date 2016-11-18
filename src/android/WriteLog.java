@@ -86,8 +86,8 @@ public class WriteLog extends CordovaPlugin {
           final WriteLog plugin = this;
 
           cordova.getThreadPool().execute(new Runnable() {
-              public void run() {
-                  cordova.startActivityForResult(plugin, Intent.createChooser(emailIntent, "Send mail..."), 0);
+              public void run() {                
+                  cordova.startActivityForResult(plugin, Intent.createChooser(emailIntent, "Send mail..."), 0);                
               }
           });
    }
